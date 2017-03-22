@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include('/view/common/style.html')?>
+    <link rel="stylesheet" href="/public/assets/bootstrap-datepicker/css/bootstrap-datepicker.css">
+</head>
+<body>
+    
+    <!-- 侧边栏 -->
+    <?php include('/view/common/aside.html')?>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="container-fluid">
+            <!-- 头部 -->
+            <?php include('/view/common/header.html')?>
+            <div class="body teacher"id="teacherAdd">
+                <!-- 面包屑 -->
+            </div>
+        </div>
+    </div>
+
+    <?php include('/view/common/script.html')?>
+    <script type="text/template"id='teaedit'>
+        <ol class="breadcrumb">
+            <li><a href="javascript:;">讲师管理</a></li>
+            <li class="active">{{tcInfo}}</li>
+        </ol>
+        <div class="teacher-add">
+            <form id='teacherForm' class="form-horizontal col-xs-offset-2">
+                <br><br>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">姓名</label>
+                    <div class="col-xs-4">
+                        <input type="text" data-required data-description='tcName'data-describedby='tcNameInfo' name="tc_name"value='{{tc_name}}'class="form-control input-sm" placeholder="讲师名称">
+                    </div>
+                    <div class="col-xs-2"id='tcNameInfo'></div>
+                </div>
+                {{if tc_id}}
+                <input type="hidden"value='{{tc_id}}'name="tc_id">
+                {{/if}}
+                {{if !tc_id}}
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">密码</label>
+                    <div class="col-xs-4">
+                        <input type="password" data-required data-description='tcPass'data-describedby='tcPassInfo'name="tc_pass"class="form-control input-sm"value="{{tc_pass}}">
+                    </div>
+                    <div class="col-xs-2"id='tcPassInfo'></div>
+                </div>
+                {{/if}}
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">入职时间</label>
+                    <div class="col-xs-4">
+                        <input name="tc_join_date" data-required data-description='joinDate'data-describedby='joinDateInfo'data-required value="{{ tc_join_date }}" data-description='tcJoindate' data-describedby='tcJoindate' type="text" class="form-control input-sm" data-provide='datepicker' data-date-language='zh-CN' data-date-format='yyyy-mm-dd' data-date-end-date='0d'>
+                    </div>
+                    <div class="col-xs-2"id='joinDateInfo'></div>
+                </div>
+                <div class="form-group">
+                    <label for="kind" class="col-xs-3 control-label">类型</label>
+                    <div class="col-xs-2">
+                        <select name="tc_type" class="form-control input-sm"id="kind">
+                            <option value="1"{{if tc_type==1}}selected{{/if}}>讲师</option>
+                            <option value="0"{{if tc_type==0}}selected{{/if}}>管理员</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="col-xs-3 control-label">性别</label>
+                    <div class="col-xs-4">
+                        <label class="radio-inline">
+                            <input type="radio"name='tc_gender' {{if tc_gender==1}}checked{{/if}}> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio"name='tc_gender'id='gender'{{if tc_gender==0}}checked{{/if}}> 女
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-7">
+                        <input type='submit' class="btn btn-success btn-sm pull-right"value='{{tcBtn}}'>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </script>
+    <script>
+        require(['js/teacher_add']);
+    </script>
+
+</body>
+</html>
