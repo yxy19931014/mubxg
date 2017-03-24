@@ -4,7 +4,7 @@ define(['jquery','template','util','cookie','overlay'],function ($, template,uti
     util.setMenu(path);
     // 控制左侧导航菜单的显示和隐藏
     $('.navs ul').prev('a').on('click', function () {
-        $(this).next().slideutil();
+        $(this).next().slideToggle();
     });
     // 没有登录的时候都跳到登录页面
     var filename=location.pathname;

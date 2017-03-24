@@ -3,6 +3,7 @@
  */
 require.config({
     baseUrl:'/public',
+    urlArgs:'bust='+(new Date()).getTime(),//防止缓存
     paths:{
         jquery:'assets/jquery/jquery',
         cookie:'assets/jquery-cookie/jquery.cookie',
@@ -18,7 +19,8 @@ require.config({
         validate:'assets/validate/jquery-validate.min',
         uploadify:'assets/uploadify/jquery.uploadify',
         region:'assets/jquery-region/jquery.region',
-        ckeditor:'assets/ckeditor/ckeditor'
+        ckeditor:'assets/ckeditor/ckeditor',
+        jcrop:'assets/jcrop/js/Jcrop'
     },
     shim:{
         bootstrap:{
@@ -41,6 +43,9 @@ require.config({
         },
         ckeditor:{
             exports:'CKEDITOR',
+            deps:['jquery']
+        },
+        jcrop:{
             deps:['jquery']
         }
 
